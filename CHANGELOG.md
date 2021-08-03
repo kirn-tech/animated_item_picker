@@ -5,3 +5,7 @@
 ## 1.0.0+1
 
 * Example update.
+
+## 1.0.1
+
+* Improved usage in Column and Row

@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+    return Column(mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min, children: [
       decorateFirstItemPicker(
         AnimatedItemPicker(
             axis: Axis.horizontal,
@@ -34,6 +34,7 @@ class HomePage extends StatelessWidget {
             itemCount: Level.LIST.length,
             pressedOpacity: 0.85,
             initialSelection: {Level.LIST.indexOf(Level.BEGINNER)},
+            expandedItems: true,
             onItemPicked: (index, selected) {
               print("Gender: ${Level.LIST[index]}, selected: $selected");
             },
@@ -49,6 +50,7 @@ class HomePage extends StatelessWidget {
           multipleSelection: true,
           itemCount: DayOfWeek.LIST.length,
           maxItemSelectionCount: 6,
+          expandedItems: true,
           initialSelection: {1},
           onItemPicked: (index, selected) {
             print("Day: ${DayOfWeek.LIST[index]}, selected: $selected");

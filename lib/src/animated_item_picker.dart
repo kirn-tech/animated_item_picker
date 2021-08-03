@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 typedef Widget IndexedItemBuilder(int index, double animatedValue);
 
 class AnimatedItemPicker extends StatefulWidget {
-
   /// `onItemPicked` callback is triggered once selection animation is completed.
   final Function(int, bool) onItemPicked;
 
@@ -42,6 +41,12 @@ class AnimatedItemPicker extends StatefulWidget {
   /// Pressed item opacity. Animates in onTapDown, animates out onTapUp.  Defaults to 0.9.
   final double pressedOpacity;
 
+  /// Set `true` to give items equal size by wrapping in [Expanded].
+  /// If [AnimatedItemPicker] is inside Row or Column setting `expandedItems` = true,  could cause "unbounded width/height" issue,
+  /// to avoid it consider setting `expandedItems` = false and giving item size explicitly in 'itemBuilder'.
+  /// Defaults to false.
+  final bool expandedItems;
+
   /// Animation duration.
   final Duration duration;
 
@@ -58,6 +63,7 @@ class AnimatedItemPicker extends StatefulWidget {
     this.curve = Curves.easeIn,
     this.initialSelection = const {},
     this.multipleSelection = false,
+    this.expandedItems = false,
     this.maxItemSelectionCount,
   });
 
@@ -116,8 +122,9 @@ class _AnimatedItemPickerState extends State<AnimatedItemPicker> with SingleTick
     for (int i = 0; i < widget.itemCount; i++) {
       final animatedItemValue = _animatedItemValues[i];
       final child = widget.itemBuilder(i, animatedItemValue.get());
-      children.add(Expanded(
-          child: AnimatedItem(child: child, pressedOpacity: widget.pressedOpacity, onPressed: () => _onItemPressed(i))));
+      final animatedItem =
+          AnimatedItem(child: child, pressedOpacity: widget.pressedOpacity, onPressed: () => _onItemPressed(i));
+      children.add(widget.expandedItems ? Expanded(child: animatedItem) : animatedItem);
     }
 
     return children;
