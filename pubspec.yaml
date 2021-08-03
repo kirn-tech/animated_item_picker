@@ -1,6 +1,6 @@
 name: animated_item_picker
-description: Generic item picker that encapsulates single or multiple item selection logic. Based on Column or Row, so it is suitable for fixed size item lists, like custom BottomNavigationBar, week day or gender selector etc.
-version: 1.0.0
+description: Generic item picker that encapsulates single or multiple item selection logic.
+version: 1.0.0+1
 homepage: https://kirn.tech
 
 environment:
