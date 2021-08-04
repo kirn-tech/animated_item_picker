@@ -9,3 +9,7 @@
 ## 1.0.1
 
 * Improved usage in Column and Row
+
+## 1.0.2
+
+* Fixed onItemPicked callback invocation

@@ -94,9 +94,6 @@ class _AnimatedItemPickerState extends State<AnimatedItemPicker> with SingleTick
       });
     });
     _animationController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        widget.onItemPicked(_selectedIndex, _animatedItemValues[_selectedIndex]._selected);
-      }
       if (widget.multipleSelection) {
         if (status == AnimationStatus.forward) {
           _resolveSelection(_selectedIndex);
@@ -105,6 +102,12 @@ class _AnimatedItemPickerState extends State<AnimatedItemPicker> with SingleTick
         if (status == AnimationStatus.forward || status == AnimationStatus.dismissed) {
           _resolveSelection(_selectedIndex);
         }
+      }
+
+      if (status == AnimationStatus.completed) {
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          widget.onItemPicked(_selectedIndex, _animatedItemValues[_selectedIndex]._selected);
+        });
       }
     });
   }
