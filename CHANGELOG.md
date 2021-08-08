@@ -13,3 +13,7 @@
 ## 1.0.2
 
 * Fixed onItemPicked callback invocation
+
+## 1.0.2+1
+
+* Homepage update

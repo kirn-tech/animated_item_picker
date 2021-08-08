@@ -1,7 +1,7 @@
 name: animated_item_picker
 description: Generic item picker that encapsulates single or multiple item selection logic.
-version: 1.0.2
-homepage: https://kirn.tech
+version: 1.0.2+1
+homepage: https://github.com/kirn-tech/animated_item_picker
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
