@@ -54,6 +54,7 @@ class AnimatedItemPicker extends StatefulWidget {
   final Curve curve;
 
   AnimatedItemPicker({
+    Key? key,
     required this.axis,
     required this.itemCount,
     required this.itemBuilder,
@@ -65,7 +66,7 @@ class AnimatedItemPicker extends StatefulWidget {
     this.multipleSelection = false,
     this.expandedItems = false,
     this.maxItemSelectionCount,
-  });
+  }) : super(key: key);
 
   @override
   _AnimatedItemPickerState createState() => _AnimatedItemPickerState();

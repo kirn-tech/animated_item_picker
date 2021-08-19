@@ -17,3 +17,7 @@
 ## 1.0.2+1
 
 * Homepage update
+
+## 1.0.2+2
+
+* Key added
