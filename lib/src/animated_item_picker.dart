@@ -95,16 +95,6 @@ class _AnimatedItemPickerState extends State<AnimatedItemPicker> with SingleTick
       });
     });
     _animationController.addStatusListener((status) {
-      if (widget.multipleSelection) {
-        if (status == AnimationStatus.forward) {
-          _resolveSelection(_selectedIndex);
-        }
-      } else {
-        if (status == AnimationStatus.forward || status == AnimationStatus.dismissed) {
-          _resolveSelection(_selectedIndex);
-        }
-      }
-
       if (status == AnimationStatus.completed) {
         WidgetsBinding.instance?.addPostFrameCallback((_) {
           widget.onItemPicked(_selectedIndex, _animatedItemValues[_selectedIndex]._selected);
@@ -135,6 +125,9 @@ class _AnimatedItemPickerState extends State<AnimatedItemPicker> with SingleTick
   }
 
   void _onItemPressed(int index) {
+    if (!_resolveSelection(index)) {
+      return;
+    }
     _selectedIndex = index;
     if (_animationController.isAnimating) {
       _animationController.animateBack(0.0);
@@ -143,23 +136,28 @@ class _AnimatedItemPickerState extends State<AnimatedItemPicker> with SingleTick
     }
   }
 
-  _resolveSelection(int selectedIndex) {
+  bool _resolveSelection(int selectedIndex) {
     if (widget.multipleSelection) {
       if (_selectedPositions.contains(selectedIndex)) {
         _selectedPositions.remove(selectedIndex);
       } else {
-        if (widget.maxItemSelectionCount != null && widget.maxItemSelectionCount == _selectedPositions.length) {
-          return;
+        if (_allItemsSelected()) {
+          return false;
         }
         _selectedPositions.add(selectedIndex);
       }
     } else {
       if (_selectedPositions.contains(selectedIndex)) {
-        return;
+        return false;
       }
       _selectedPositions.clear();
       _selectedPositions.add(selectedIndex);
     }
+    return true;
+  }
+
+  bool _allItemsSelected() {
+    return widget.maxItemSelectionCount != null && widget.maxItemSelectionCount == _selectedPositions.length;
   }
 
   @override

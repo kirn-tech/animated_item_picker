@@ -21,3 +21,7 @@
 ## 1.0.2+2
 
 * Key added
+
+## 1.0.3
+
+* Multiple selection bug fix
