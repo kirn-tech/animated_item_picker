@@ -25,3 +25,7 @@
 ## 1.0.3
 
 * Multiple selection bug fix
+
+## 1.0.4
+
+* Multiple selection bug fix

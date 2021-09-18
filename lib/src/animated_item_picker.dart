@@ -117,7 +117,7 @@ class _AnimatedItemPickerState extends State<AnimatedItemPicker> with SingleTick
       final animatedItemValue = _animatedItemValues[i];
       final child = widget.itemBuilder(i, animatedItemValue.get());
       final animatedItem =
-          AnimatedItem(child: child, pressedOpacity: widget.pressedOpacity, onPressed: () => _onItemPressed(i));
+      AnimatedItem(child: child, pressedOpacity: widget.pressedOpacity, onPressed: () => _onItemPressed(i));
       children.add(widget.expandedItems ? Expanded(child: animatedItem) : animatedItem);
     }
 
@@ -125,15 +125,14 @@ class _AnimatedItemPickerState extends State<AnimatedItemPicker> with SingleTick
   }
 
   void _onItemPressed(int index) {
+    if (_animationController.isAnimating) {
+      return;
+    }
     if (!_resolveSelection(index)) {
       return;
     }
     _selectedIndex = index;
-    if (_animationController.isAnimating) {
-      _animationController.animateBack(0.0);
-    } else {
-      _animationController.forward(from: 0.0);
-    }
+    _animationController.forward(from: 0.0);
   }
 
   bool _resolveSelection(int selectedIndex) {
