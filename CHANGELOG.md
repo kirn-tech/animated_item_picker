@@ -33,3 +33,7 @@
 ## 1.0.5
 
 * Fixed warnings
+
+## 1.0.5+1
+
+* Fixed warnings

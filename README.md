@@ -38,4 +38,19 @@ Supports tapUp/tapDown item opacity animation.
   }
 ```
 
+## Article
 
+Often a user has to make a choice in an application, eg. gender, difficulty level, or switch a tab, etc. 
+You can agree that well-designed animated item selection will make your UI look more intuitively with enhanced User Experience.
+
+We at KiRN tech use this element so often that we decided to create a separate package for it.
+
+Here we'll walk through the base stages of this package creation:
+
+ - Define AnimatedItemPicker API.
+ - Implement select/unSelect item animation
+ - Animate item selection opacity
+
+
+More:
+https://kirn.tech/article-flutteranimation-animated-item-picker
