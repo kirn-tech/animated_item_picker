@@ -96,7 +96,7 @@ class _AnimatedItemPickerState extends State<AnimatedItemPicker> with SingleTick
     });
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        WidgetsBinding.instance?.addPostFrameCallback((_) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
           widget.onItemPicked(_selectedIndex, _animatedItemValues[_selectedIndex]._selected);
         });
       }

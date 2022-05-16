@@ -29,3 +29,7 @@
 ## 1.0.4
 
 * Multiple selection bug fix
+
+## 1.0.5
+
+* Fixed warnings
